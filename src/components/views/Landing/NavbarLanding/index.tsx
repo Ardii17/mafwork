@@ -17,14 +17,14 @@ const NavbarLanding = (props: proptypes) => {
       <div className="px-8 flex justify-between items-center w-full h-full">
         <div className="flex gap-4 items-center">
           <Image
-            src={"/@/../../Image/Mafwork IMG.png"}
+            src={"/@/Image/Mafwork IMG.png"}
             alt={"Logo"}
             width={60}
             height={60}
             className="max-h-16 object-cover aspect-square"
           />
           <Image
-            src={"/@/../../Image/Mafwork Text.png"}
+            src={"/@/Image/Mafwork Text.png"}
             alt={"Logo"}
             width={130}
             height={130}

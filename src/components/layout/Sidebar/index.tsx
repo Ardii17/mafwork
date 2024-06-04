@@ -30,7 +30,7 @@ const SidebarLayout = () => {
       <div className="fixed w-1/6 min-h-screen h-screen max-h-screen bg-white shadow flex flex-col gap-4">
         <div className="w-full flex items-center justify-center mt-4">
           <Image
-            src={"/@/../../Image/Mafwork Text.png"}
+            src={"/@/Image/Mafwork Text.png"}
             alt={"Logo"}
             width={130}
             height={130}
