@@ -11,7 +11,7 @@ const EducationLayout = (props: proptypes) => {
     <div className="p-4 flex flex-col gap-4" style={{ marginTop: "60px" }}>
       <div className="w-full h-auto p-4 flex gap-4 items-center shadow rounded bg-white relative">
         <Image
-          src={`/@/../../Image/${title.toLowerCase()}.png`}
+          src={`/@/../../../Image/${title.toLowerCase()}.png`}
           width={60}
           height={60}
           alt={"Kelas"}
