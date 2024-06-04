@@ -12,7 +12,7 @@ const FeaturesSection = (props: { featureRef: any }) => {
           <div className="bg-white p-6 rounded-lg shadow">
             <div className="text-center">
               <Image
-                src={"/@/../Image/Landing/Kelas.png"}
+                src={"/@/../../Image/Landing/Kelas.png"}
                 width={64}
                 height={64}
                 alt="Class Icon"
@@ -29,7 +29,7 @@ const FeaturesSection = (props: { featureRef: any }) => {
           <div className="bg-white p-6 rounded-lg shadow">
             <div className="text-center">
               <Image
-                src={"/@/../Image/Landing/Tugas.png"}
+                src={"/@/../../Image/Landing/Tugas.png"}
                 width={64}
                 height={64}
                 className="mx-auto w-16 h-16"
@@ -46,7 +46,7 @@ const FeaturesSection = (props: { featureRef: any }) => {
           <div className="bg-white p-6 rounded-lg shadow">
             <div className="text-center">
               <Image
-                src={"/@/../Image/Landing/Quiz.png"}
+                src={"/@/../../Image/Landing/Quiz.png"}
                 width={64}
                 height={64}
                 alt="Quiz Icon"
@@ -63,7 +63,7 @@ const FeaturesSection = (props: { featureRef: any }) => {
           <div className="bg-white p-6 rounded-lg shadow">
             <div className="text-center">
               <Image
-                src={"/@/../Image/Landing/Ujian.png"}
+                src={"/@/../../Image/Landing/Ujian.png"}
                 width={64}
                 height={64}
                 alt="Exam Icon"
