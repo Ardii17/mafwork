@@ -1,4 +1,5 @@
 import Image from "next/image";
+import BoxFeature from "./BoxFeatureSection";
 
 const FeaturesSection = (props: { featureRef: any }) => {
   const { featureRef } = props;
@@ -9,74 +10,26 @@ const FeaturesSection = (props: { featureRef: any }) => {
           Our Features
         </h3>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <div className="text-center">
-              <Image
-                src={"/@/../../../Image/Landing/Kelas.png"}
-                width={64}
-                height={64}
-                alt="Class Icon"
-                className="mx-auto w-16 h-16"
-              />
-              <h4 className="mt-4 text-xl font-semibold text-gray-900">
-                Kelas
-              </h4>
-              <p className="mt-2 text-gray-600">
-                Manage your classes and schedules efficiently.
-              </p>
-            </div>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <div className="text-center">
-              <Image
-                src={"/@/../../../Image/Landing/Tugas.png"}
-                width={64}
-                height={64}
-                className="mx-auto w-16 h-16"
-                alt="Assignment Icon"
-              />
-              <h4 className="mt-4 text-xl font-semibold text-gray-900">
-                Pengumpulan Tugas
-              </h4>
-              <p className="mt-2 text-gray-600">
-                Easily submit and track your assignments.
-              </p>
-            </div>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <div className="text-center">
-              <Image
-                src={"/@/../../../Image/Landing/Quiz.png"}
-                width={64}
-                height={64}
-                alt="Quiz Icon"
-                className="mx-auto w-16 h-16"
-              />
-              <h4 className="mt-4 text-xl font-semibold text-gray-900">
-                Bermain Kuis
-              </h4>
-              <p className="mt-2 text-gray-600">
-                Engage with interactive quizzes.
-              </p>
-            </div>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <div className="text-center">
-              <Image
-                src={"/@/../../../Image/Landing/Ujian.png"}
-                width={64}
-                height={64}
-                alt="Exam Icon"
-                className="mx-auto w-16 h-16"
-              />
-              <h4 className="mt-4 text-xl font-semibold text-gray-900">
-                Ujian
-              </h4>
-              <p className="mt-2 text-gray-600">
-                Conduct and participate in exams seamlessly.
-              </p>
-            </div>
-          </div>
+          <BoxFeature
+            img="/@/../Image/Landing/Kelas.png"
+            title="Kelas"
+            desc="Manage your classes and schedules efficiently."
+          />
+          <BoxFeature
+            img="/@/../Image/Landing/Tugas.png"
+            title="Pengumpulan Tugas"
+            desc="Easily submit and track your assignments."
+          />
+          <BoxFeature
+            img="/@/../Image/Landing/Quiz.png"
+            title="Bermain Quiz"
+            desc="Engage with interactive quizzes."
+          />
+          <BoxFeature
+            img="/@/../Image/Landing/Ujian.png"
+            title="Melakukan Ujian"
+            desc="Conduct and participate in exams seamlessly."
+          />
         </div>
       </div>
     </section>

@@ -6,37 +6,37 @@ import { useEffect, useRef, useState } from "react";
 
 const quiz = [
   {
-    img: "/@/../../../Image/Quiz/dunia.png",
+    img: "/@/../Image/Quiz/dunia.png",
     title: "Ilmu Pengetahuan Dunia",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Quiz/alam.png",
+    img: "/@/../Image/Quiz/alam.png",
     title: "Ilmu Pengetahuan Alam",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Quiz/umum.png",
+    img: "/@/../Image/Quiz/umum.png",
     title: "Ilmu Pengetahuan Umum",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Quiz/logika.png",
+    img: "/@/../Image/Quiz/logika.png",
     title: "Logika",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Quiz/tof.png",
+    img: "/@/../Image/Quiz/tof.png",
     title: "Benar atau Salah",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Quiz/kartun.png",
+    img: "/@/../Image/Quiz/kartun.png",
     title: "Tokoh Kartun",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
@@ -45,37 +45,37 @@ const quiz = [
 
 const exam = [
   {
-    img: "/@/../../../Image/Exam/exam.png",
+    img: "/@/../Image/Exam/exam.png",
     title: "Ilmu Pengetahuan Dunia",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Exam/exam.png",
+    img: "/@/../Image/Exam/exam.png",
     title: "Ilmu Pengetahuan Alam",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Exam/exam.png",
+    img: "/@/../Image/Exam/exam.png",
     title: "Ilmu Pengetahuan Umum",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Exam/exam.png",
+    img: "/@/../Image/Exam/exam.png",
     title: "Logika",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Exam/exam.png",
+    img: "/@/../Image/Exam/exam.png",
     title: "Benar atau Salah",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
   },
   {
-    img: "/@/../../../Image/Exam/exam.png",
+    img: "/@/../Image/Exam/exam.png",
     title: "Tokoh Kartun",
     desc: "10 Pertanyaan • 10 Dimainkan",
     link: "/quiz",
@@ -96,7 +96,7 @@ const HeroSection = () => {
     <div className="w-full">
       <div className="w-full h-screen flex flex-col items-center justify-center gap-8">
         <Image
-          src={"/@/../../../Image/HomePic.png"}
+          src={"/@/../Image/HomePic.png"}
           alt="Hero Section"
           width={500}
           height={300}
@@ -132,7 +132,7 @@ const HeroSection = () => {
             Tugasmu
           </h1>
           <div className="w-full min-h-96 bg-white rounded-md shadow mt-4 flex flex-col items-center justify-center gap-6">
-            <Image src={"/@/../../../Image/nowork.jpg"} alt="No Work" width={300} height={150} />
+            <Image src={"/@/../Image/nowork.jpg"} alt="No Work" width={300} height={150} />
             <p className="text-xl text-gray-400">Yeayy, Tidak ada tugas</p>
           </div>
         </div>

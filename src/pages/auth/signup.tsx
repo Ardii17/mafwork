@@ -13,6 +13,7 @@ export default function Signup() {
     setLoading(true);
     const form: any = e.target as HTMLFormElement;
     const data = {
+      fullname: form.fullname.value,
       username: form.username.value,
       email: form.email.value,
       phone: form.phone.value,

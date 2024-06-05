@@ -30,14 +30,14 @@ const SidebarLayout = () => {
       <div className="fixed w-1/6 min-h-screen h-screen max-h-screen bg-white shadow flex flex-col gap-4">
         <div className="w-full flex items-center justify-center mt-4">
           <Image
-            src={"/@/../../../Image/Mafwork Text.png"}
+            src={"/@/../Image/Mafwork Text.png"}
             alt={"Logo"}
             width={130}
             height={130}
           />
         </div>
         <div className="flex flex-col gap-2 justify-center items-center">
-          <p className="font-semibold">{session.data?.user.username}</p>
+          <p className="font-semibold text-center">{session.data?.user.username}</p>
           <p className="text-sm opacity-70">Student</p>
         </div>
         <div className="mt-8">

@@ -22,6 +22,7 @@ const FormSignup = (props: proptypes) => {
         <p className="opacity-60">Selamat datang di tempat Mafwork</p>
       </div>
       <div className="flex flex-col gap-4 w-full">
+        <Input type="text" name="fullname" placeholder="fullname" required />
         <Input type="text" name="username" placeholder="username" required />
         <Input
           type="number"

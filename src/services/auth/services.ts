@@ -2,7 +2,7 @@ import { addData, retrieveDataByField } from "@/lib/firebase/service";
 import bcrypt from "bcrypt";
 
 export async function Signin(email: string) {
-  const data = await retrieveDataByField("users", "email", email);
+  const data = await retrieveDataByField("usersmafwork", "email", email);
 
   if (data) {
     return data[0];
@@ -13,6 +13,7 @@ export async function Signin(email: string) {
 
 export async function Signup(
   userData: {
+    fullname: string;
     usernama: string;
     email: string;
     phone: string;
@@ -22,7 +23,7 @@ export async function Signup(
   },
   callback: Function
 ) {
-  const data = await retrieveDataByField("users", "email", userData.email);
+  const data = await retrieveDataByField("usersmafwork", "email", userData.email);
   if (data.length > 0) {
     callback(false);
   } else {
@@ -31,7 +32,7 @@ export async function Signup(
     }
     userData.password = await bcrypt.hash(userData.password, 10);
     userData.createdAt = new Date();
-    await addData("users", userData, (result: boolean) => {
+    await addData("usersmafwork", userData, (result: boolean) => {
       callback(result);
     });
   }
