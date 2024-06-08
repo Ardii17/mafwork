@@ -20,10 +20,16 @@ export async function Signup(
     password: string;
     createdAt?: Date;
     role?: string;
+    classJoined?: any[];
+    classesOwned?: any[];
   },
   callback: Function
 ) {
-  const data = await retrieveDataByField("usersmafwork", "email", userData.email);
+  const data = await retrieveDataByField(
+    "usersmafwork",
+    "email",
+    userData.email
+  );
   if (data.length > 0) {
     callback(false);
   } else {
@@ -32,6 +38,9 @@ export async function Signup(
     }
     userData.password = await bcrypt.hash(userData.password, 10);
     userData.createdAt = new Date();
+    userData.classJoined = [];
+    userData.classesOwned = [];
+
     await addData("usersmafwork", userData, (result: boolean) => {
       callback(result);
     });

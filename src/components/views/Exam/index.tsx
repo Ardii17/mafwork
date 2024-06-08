@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const ExamView = () => {
   return (
-    <EducationLayout title="Ujian">
+    <EducationLayout title="Ujian" buttonTitle="Buat Ujian" variantButton="yellow">
       <div className="w-1/2 h-full flex flex-col gap-4">
         <div className="w-full min-h-28 h-28 max-h-28 shadow rounded bg-white p-2 flex gap-3 cursor-pointer hover:bg-zinc-100 transition-all">
           <Image

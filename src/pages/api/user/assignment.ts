@@ -1,8 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
-import { retrieveDataByID } from "@/lib/firebase/service";
+import { getAllAssignment, getClass } from "@/lib/firebase/service";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const token = req.headers.authorization?.split(" ")[1];
   if (req.method === "GET") {
     if (token) {
@@ -10,19 +13,19 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         token,
         process.env.NEXTAUTH_SECRET || "",
         async (err: any, decoded: any) => {
-          const data = await retrieveDataByID("usersmafwork", decoded.id);
+          const data = await getAllAssignment(decoded.id);
           if (data) {
             res.status(200).json({
               statusCode: 200,
               status: true,
               message: "Success",
-              data: data.class,
+              data: data,
             });
           } else {
-            res.status(400).json({
+            res.status(200).json({
               statusCode: 400,
               status: false,
-              message: "Failed",
+              message: "Failed get data",
               data: {},
             });
           }
@@ -32,10 +35,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   } else {
     res
       .status(500)
-      .json({
-        statusCode: 500,
-        status: false,
-        message: "Method not Available",
-      });
+      .json({ statusCode: 500, status: false, message: "Method not Allowed" });
   }
 }

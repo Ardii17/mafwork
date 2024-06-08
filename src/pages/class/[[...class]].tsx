@@ -18,6 +18,8 @@ const ClassPage = () => {
     }
   }, [session]);
 
+  console.log(data);
+
   return <ClassView data={data} />;
 };
 

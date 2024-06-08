@@ -1,5 +1,7 @@
+import { ThemeContext } from "@/components/context";
+import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 const List = (props: {
   setFiltered: any;
@@ -20,6 +22,7 @@ const List = (props: {
 };
 
 const NavbarLayout = () => {
+  const Theme = useContext(ThemeContext);
   const [onFilter, setOnFilter] = useState(false);
   const [filtered, setFiltered] = useState("Quiz");
 
@@ -80,9 +83,7 @@ const NavbarLayout = () => {
         </div>
       </div>
       <div className="flex gap-4 items-center justify-center">
-        <button className="bg-blue-700 text-white px-3 py-2 rounded text-nowrap">
-          Enter Code
-        </button>
+        <Button type="button" onClick={() => Theme?.setEnterCode(true)}>Enter Code</Button>
         <i className="bx bx-bell text-xl py-2 px-3 rounded-full bg-zinc-100 cursor-pointer" />
       </div>
     </div>

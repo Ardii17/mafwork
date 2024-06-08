@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/components/context";
 import AppShell from "@/components/views/AppShell";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
@@ -9,9 +10,11 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <AppShell>
-        <Component {...pageProps} />
-      </AppShell>
+      <ThemeProvider>
+        <AppShell>
+          <Component {...pageProps} />
+        </AppShell>
+      </ThemeProvider>
     </SessionProvider>
   );
 }

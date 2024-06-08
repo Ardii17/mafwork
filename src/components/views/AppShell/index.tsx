@@ -1,14 +1,18 @@
+import { ThemeContext } from "@/components/context";
 import Footer from "@/components/layout/Footer";
+import ModalLayout from "@/components/layout/Modal";
 import NavbarLayout from "@/components/layout/Navbar";
 import SidebarLayout from "@/components/layout/Sidebar";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 
 type proptypes = {
   children: React.ReactNode;
 };
 
 const HomeViews = (props: proptypes) => {
+  const Theme = useContext(ThemeContext);
   const { children } = props;
   const disableNavbar = ["auth"];
   const disableSidebar = ["auth"];
@@ -26,7 +30,9 @@ const HomeViews = (props: proptypes) => {
       </Head>
       <div
         className={`${
-          disableSidebar.includes(pathname.split("/")[1]) ? "block" : `${pathname === "/" ? "block" : "flex"}`
+          disableSidebar.includes(pathname.split("/")[1])
+            ? "block"
+            : `${pathname === "/" ? "block" : "flex"}`
         }`}
       >
         {!disableSidebar.includes(pathname.split("/")[1]) &&
@@ -37,7 +43,9 @@ const HomeViews = (props: proptypes) => {
           )}
         <div
           className={`${
-            disableSidebar.includes(pathname.split("/")[1]) ? "w-full" : `${pathname === "/" ? "w-full" : "w-5/6"}`
+            disableSidebar.includes(pathname.split("/")[1])
+              ? "w-full"
+              : `${pathname === "/" ? "w-full" : "w-5/6"}`
           }`}
         >
           {!disableNavbar.includes(pathname.split("/")[1]) &&
@@ -45,6 +53,7 @@ const HomeViews = (props: proptypes) => {
           {children}
           {pathname === "/" && <Footer />}
         </div>
+        {Theme?.enterCode && <ModalLayout />}
       </div>
     </>
   );
