@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Loading from "@/components/ui/Loading";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { FormEvent } from "react";
 
@@ -47,7 +48,16 @@ const FormSignin = (props: proptypes) => {
           {loading ? <Loading size={30} /> : "Masuk"}
         </Button>
         <hr className="w-full" />
-        <Button type="button">Google</Button>
+        <Button
+          type="button"
+          onClick={() =>
+            signIn("google", { redirect: false, callbackUrl: "/" })
+          }
+          className="flex gap-2 items-center bg-blue-700 hover:bg-blue-800 justify-center rounded-md"
+        >
+          <i className="bx bxl-google text-xl" />
+          Google
+        </Button>
         <Link href={"/auth/signup"} className="opacity-70 text-sm text-center">
           Belum punya akun?{" "}
           <span className="text-blue-700 font-semibold">Daftar</span>

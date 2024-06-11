@@ -1,9 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
-import { addData, getClass, updateData } from "@/lib/firebase/service";
+import {
+  addClass,
+  getClass,
+  getClassByID,
+  retrieveDataByID,
+  updateData,
+} from "@/lib/firebase/service";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = req.body;
+  const { q }: any = req.query;
   const token = req.headers.authorization?.split(" ")[1] || "";
   if (req.method === "GET") {
     if (token) {
@@ -11,8 +18,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         token,
         process.env.NEXTAUTH_SECRET || "",
         async (err: any, decoded: any) => {
-          const data = await getClass(decoded.id);
-          console.log(data);
+          let data = [];
+          if (q) {
+            data = await getClassByID("classes", q);
+          } else {
+            data = await getClass(decoded.id);
+          }
           if (data) {
             res.status(200).json({
               statusCode: 200,
@@ -37,22 +48,26 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         token,
         process.env.NEXT_AUTH_SECRET || "",
         async (err: any, decoded: any) => {
-          await addData("classes", data, (status: boolean, message: string) => {
-            if (status) {
-              res.status(200).json({
-                statusCode: 200,
-                status: true,
-                message: "Success upload Data",
-                data: message,
-              });
-            } else {
-              res.status(400).json({
-                statusCode: 400,
-                status: false,
-                message: "Failed upload Data",
-              });
+          await addClass(
+            "classes",
+            data,
+            (status: boolean, message: string) => {
+              if (status) {
+                res.status(200).json({
+                  statusCode: 200,
+                  status: true,
+                  message: "Success upload Data",
+                  data: message,
+                });
+              } else {
+                res.status(400).json({
+                  statusCode: 400,
+                  status: false,
+                  message: "Failed upload Data",
+                });
+              }
             }
-          });
+          );
         }
       );
     }

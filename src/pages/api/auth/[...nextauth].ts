@@ -1,9 +1,10 @@
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from 'next-auth/providers/google'
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { Signin } from "@/services/auth/services";
+import { Signin, loginWithGoogle } from "@/services/auth/services";
 
 const authOption: NextAuthOptions = {
   session: {
@@ -41,6 +42,16 @@ const authOption: NextAuthOptions = {
         }
       },
     }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_OAUTH_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET || "",
+      authorization: {
+        params: {
+          params: "select_account",
+        },
+      },
+    }),
   ],
 
   callbacks: {
@@ -53,6 +64,28 @@ const authOption: NextAuthOptions = {
         token.phone = user.phone;
         token.role = user.role;
         token.image = user.image;
+      }
+
+      
+      if (account?.provider === "google") {
+        const data = {
+          fullname: user.name,
+          username: user.name,
+          email: user.email,
+          image: user.image,
+          type: "google"
+        }
+
+        await loginWithGoogle(data, (data: any) => {
+          token.id = data.id;
+          token.fullname = data.fullname;
+          token.username = data.username;
+          token.email = data.email;
+          token.phone = data.phone;
+          token.role = data.role;
+          token.image = data.image;
+        });
+        
       }
 
       return token;

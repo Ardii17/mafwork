@@ -1,11 +1,13 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
   getFirestore,
   query,
+  setDoc,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -15,12 +17,16 @@ const firestore = getFirestore(app);
 
 export async function retrieveData(collectionName: string) {
   const snapshot = await getDocs(collection(firestore, collectionName));
-  const data = snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+  if (snapshot.empty) {
+    return [];
+  } else {
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-  return data;
+    return data;
+  }
 }
 
 export async function retrieveDataByID(collectionName: string, id: string) {
@@ -69,6 +75,21 @@ export async function updateData(
   });
 }
 
+export async function addClass(
+  collectionName: string,
+  data: any,
+  callback: Function
+) {
+  try {
+    const res = await addDoc(collection(firestore, collectionName), data);
+    const classId = res.path.split("/")[1];
+    callback(true, classId);
+  } catch (error) {
+    console.error("Error adding class:", error);
+    throw error;
+  }
+}
+
 export async function getClass(userID: string) {
   try {
     let myClass: any = [];
@@ -97,10 +118,16 @@ export async function getClass(userID: string) {
         "usersmafwork",
         snapshot.data()?.owner
       );
+      const allAssignment = await getAllDataByTypeByID(docClass, "assignments");
+      const allLessons = await getAllDataByTypeByID(docClass, "lessons");
+      const allPost = await getAllDataByTypeByID(docClass, "posts");
 
       return {
         teacher: ownerClass?.fullname,
         id: docClass,
+        assignments: allAssignment,
+        lessons: allLessons,
+        posts: allPost,
         ...snapshot.data(),
       };
     });
@@ -113,7 +140,22 @@ export async function getClass(userID: string) {
   }
 }
 
-export async function getAllAssignment(userID: string) {
+export async function getClassByID(collectionName: string, classID: string) {
+  const snapshot = await getDoc(doc(firestore, `${collectionName}/${classID}`));
+  const data: any = snapshot.data();
+  data.id = snapshot.id;
+  const allAssignment = await getAllDataByTypeByID(classID, "assignments");
+  const allLessons = await getAllDataByTypeByID(classID, "lessons");
+  const allPost = await getAllDataByTypeByID(classID, "posts");
+  return {
+    assignments: allAssignment,
+    lessons: allLessons,
+    posts: allPost,
+    ...data,
+  };
+}
+
+export async function getAllDataByType(userID: string, dataType: string) {
   try {
     const getUser = await retrieveDataByID("usersmafwork", userID);
 
@@ -122,30 +164,60 @@ export async function getAllAssignment(userID: string) {
       return [];
     }
 
-    const assignmentPromises = getUser.classJoined.map(
-      async (docClass: string) => {
-        const snapshotClass = await retrieveDataByID("classes", docClass);
-        const ownerClass = await retrieveDataByID(
-          "usersmafwork",
-          snapshotClass.owner ?? ""
-        );
-        const snapshotAssignment = await retrieveData(
-          `classes/${docClass}/assignment`
-        );
+    const dataPromises = getUser.classJoined.map(async (docClass: string) => {
+      const snapshotClass = await retrieveDataByID("classes", docClass);
+      const ownerClass = await retrieveDataByID(
+        "usersmafwork",
+        snapshotClass.owner ?? ""
+      );
 
-        return snapshotAssignment.map((doc: any) => ({
-          teacher: ownerClass?.fullname,
-          classname: snapshotClass.name,
-          id: doc.id,
-          ...doc,
-        }));
-      }
+      const snapshotData = await retrieveData(
+        `classes/${docClass}/${dataType}`
+      );
+
+      return snapshotData.map((doc: any) => ({
+        teacher: ownerClass?.fullname,
+        classname: snapshotClass.name,
+        id: doc.id,
+        ...doc,
+      }));
+    });
+
+    const resolvedData = await Promise.all(dataPromises);
+    return resolvedData.flat();
+  } catch (error) {
+    console.error(`Error getting ${dataType}: `, error);
+    throw error;
+  }
+}
+
+export async function getAllDataByTypeByID(
+  classType: string,
+  dataType: string
+) {
+  try {
+    const snapshotClass = await retrieveDataByID("classes", classType);
+    const ownerClass = await retrieveDataByID(
+      "usersmafwork",
+      snapshotClass.owner ?? ""
     );
 
-    const resolvedAssignments = await Promise.all(assignmentPromises);
-    return resolvedAssignments.flat();
+    const snapshotData = await retrieveData(`classes/${classType}/${dataType}`);
+
+    if (snapshotData.length === 0) {
+      return [];
+    }
+
+    const allData = snapshotData.map((doc: any) => ({
+      teacher: ownerClass?.fullname,
+      classname: snapshotClass.name,
+      id: doc.id,
+      ...doc,
+    }));
+
+    return allData;
   } catch (error) {
-    console.error("Error getting assignments:", error);
+    console.error(`Error getting ${dataType}: `, error);
     throw error;
   }
 }
@@ -156,7 +228,7 @@ export async function getAssignment(
   assignmentID: string
 ) {
   try {
-    const assignments = await getAllAssignment(userID);
+    const assignments = await getAllDataByType(userID, "assignments");
     const assignment = assignments.find(
       (assign: any) => assign.id === assignmentID
     );

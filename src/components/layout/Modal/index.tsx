@@ -15,19 +15,26 @@ const ModalKode = () => {
   const [categoryKode, setCategoryKode] = useState("kelas");
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const form = e.target as HTMLFormElement;
     setLoading(true);
+
     try {
+      // Jika kategori kode adalah "kelas"
       if (categoryKode === "kelas") {
+        // Ambil data kelas berdasarkan kode
         const result: any = await retrieveDataByField(
           "classes",
           "code",
           form.code.value
         );
 
+        // Jika data kelas ditemukan
         if (result) {
+          // Bergabung dengan kelas
           Theme?.handleJoinedClass(result[0].id, async (status: boolean) => {
             if (status) {
+              // Update data kelas dengan menambahkan user ke daftar members
               await userServices.updateClass(
                 session.data?.token,
                 result[0].id,
@@ -39,6 +46,8 @@ const ModalKode = () => {
                   ],
                 }
               );
+
+              // Reset form, hentikan loading, dan refresh halaman
               form.reset();
               setLoading(false);
               window.location.reload();
@@ -46,11 +55,13 @@ const ModalKode = () => {
           });
         }
       } else {
+        // Jika kategori kode bukan "kelas", set error
         setError("Kode Tidak Tersedia");
         setLoading(false);
         throw new Error("Kode Tidak Tersedia");
       }
     } catch (error) {
+      // Tangkap error dan set error
       setError("Kode Tidak Tersedia");
       setLoading(false);
     }

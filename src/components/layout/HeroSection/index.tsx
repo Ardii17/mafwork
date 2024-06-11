@@ -2,6 +2,7 @@ import Button from "@/components/ui/Button";
 import CardQuiz from "@/components/ui/CardQuiz";
 import CarouselCard from "@/components/ui/CarouselCard";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
 const quiz = [
@@ -83,6 +84,7 @@ const exam = [
 ];
 
 const HeroSection = () => {
+  const {push} = useRouter();
   const cardSectionRef: any = useRef(null);
   const [cardWidth, setCardWidth] = useState(0);
   useEffect(() => {
@@ -113,7 +115,7 @@ const HeroSection = () => {
             portal ini dirancang untuk meningkatkan pengalaman belajar Anda.
           </p>
           <div className="flex gap-4 items-center justify-center mt-4">
-            <Button type="button" className="bg-red-700 rounded-full w-full">
+            <Button type="button" className="bg-red-700 rounded-full w-full" onClick={() => push("/assignment")}>
               Lihat Tugas
             </Button>
             <Button type="button" className="bg-green-700 rounded-full w-full">

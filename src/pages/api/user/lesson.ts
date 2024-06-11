@@ -13,7 +13,7 @@ export default async function handler(
         token,
         process.env.NEXTAUTH_SECRET || "",
         async (err: any, decoded: any) => {
-          const data = await getAllDataByType(decoded.id, "assignments");
+          const data = await getAllDataByType(decoded.id, "lessons");
           if (data) {
             res.status(200).json({
               statusCode: 200,

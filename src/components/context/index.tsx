@@ -1,5 +1,6 @@
 import userServices from "@/services/user";
 import { useSession } from "next-auth/react";
+import { signOut as nextSignOut } from "next-auth/react";
 import {
   Dispatch,
   SetStateAction,
@@ -13,6 +14,12 @@ type Data = {
   setProfile: Dispatch<SetStateAction<any>>;
   updateLocalStorageProfile: (userId: string, updatedProfile: any) => void;
   generateRandomCode: () => string;
+  secondsToCurrentDate: (seconds: number) => {
+    date: number;
+    month: number;
+    year: number;
+  };
+  signOut: () => void;
   handleJoinedClass: (newID: string, callback: Function) => void;
   enterCode: boolean;
   setEnterCode: Dispatch<SetStateAction<boolean>>;
@@ -48,6 +55,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }
   };
+
   function generateRandomCode() {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let result = "";
@@ -60,6 +68,39 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
     return result;
   }
+
+  const secondsToCurrentDate: any = (seconds: number) => {
+    const date = new Date(seconds * 1000);
+    const currentDate = date.getDate();
+    const currentMonth = date.getMonth();
+    const currentYear = date.getFullYear();
+    // Array yang berisi nama bulan
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
+
+    return {
+      date: currentDate,
+      month: months[currentMonth],
+      year: currentYear,
+    };
+  };
+  const signOut = () => {
+    localStorage.removeItem(`profile_${session.data?.user.id}`);
+    setProfile(null);
+    nextSignOut({ callbackUrl: "/" });
+  };
 
   useEffect(() => {
     const getProfile = async () => {
@@ -89,6 +130,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setProfile,
     updateLocalStorageProfile,
     handleJoinedClass,
+    secondsToCurrentDate: (seconds: number) => secondsToCurrentDate(seconds),
+    signOut,
     generateRandomCode,
     enterCode,
     setEnterCode,

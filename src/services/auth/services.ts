@@ -46,3 +46,33 @@ export async function Signup(
     });
   }
 }
+
+export async function loginWithGoogle(
+  data: {
+    id?: string;
+    fullname: string;
+    username: string;
+    email: string;
+    image: string;
+    phone?: string;
+    password?: string;
+    createdAt?: Date;
+    role?: string;
+    classJoined?: any[];
+    classesOwned?: any[];
+  },
+  callback: Function
+) {
+  const user = await retrieveDataByField("usersmafwork", "email", data.email);
+
+  if (user.length > 0) {
+    callback(user[0]);
+  } else {
+    data.createdAt = new Date();
+    data.password = "";
+    await addData("usersmafwork", data, (status: boolean, res: string) => {
+      data.id = res;
+      callback(data);
+    });
+  }
+}

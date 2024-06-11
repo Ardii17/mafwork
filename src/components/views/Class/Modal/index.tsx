@@ -22,53 +22,59 @@ const ModalLayout = (props: proptypes) => {
   const session: any = useSession();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    setIsLoading(true);
-    const data: any = {
-      name: form.class.value,
-      grade: form.level.value,
-      desc: form.desc.value,
-      classTime: form.classTime.value,
-      classDuration: form.classDuration.value,
-      classLocation: form.classLocation.value,
-      createdAt: new Date(),
-      code: Theme?.generateRandomCode(),
-      owner: session.data?.user?.id,
-      members: [],
-    };
+const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const form = e.target as HTMLFormElement;
+  setIsLoading(true);
 
+  const data: any = {
+    name: form.class.value,
+    grade: form.level.value,
+    desc: form.desc.value,
+    classTime: form.classTime.value,
+    classDuration: form.classDuration.value,
+    classLocation: form.classLocation.value,
+    createdAt: new Date(),
+    code: Theme?.generateRandomCode(),
+    owner: session.data?.user?.id,
+    bg: Math.ceil(Math.random() * 7),
+    members: [],
+  };
+
+  try {
     const result = await userServices.addClass(session.data?.user?.token, data);
 
     if (result.status === 200) {
+      const updatedClassesOwned = [
+        ...(Theme?.profile?.classesOwned || []),
+        result.data.data,
+      ];
+
       const resultUpdate = await userServices.updateProfile(
         session.data?.token,
-        {
-          classesOwned: [
-            ...(Theme?.profile?.classesOwned || []),
-            result.data.data,
-          ],
-        }
+        { classesOwned: updatedClassesOwned }
       );
 
       if (resultUpdate.status === 200) {
         Theme?.updateLocalStorageProfile(session.data?.user.id, {
           ...Theme?.profile,
-          classesOwned: [
-            ...(Theme?.profile?.classesOwned || []),
-            result.data.data,
-          ],
+          classesOwned: updatedClassesOwned,
         });
+
         setIsLoading(false);
         setOnAddClass(false);
-        window.location.reload();
         form.reset();
       }
     } else {
-      console.log("error");
+      console.error("Failed to add class");
     }
-  };
+  } catch (error) {
+    console.error("Error: ", error);
+  }
+
+  window.location.reload();
+};
+
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">

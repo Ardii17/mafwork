@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 
 const ClassPage = () => {
   const session: any = useSession();
-  const [data, setData] = useState([]);
+  const [dataClass, setDataClass] = useState([]);
 
   useEffect(() => {
     const getClass = async () => {
       const { data } = await userServices.getClass(session.data?.token);
-      setData(data.data);
+      setDataClass(data.data);
     };
 
     if (session.data?.token) {
@@ -18,9 +18,7 @@ const ClassPage = () => {
     }
   }, [session]);
 
-  console.log(data);
-
-  return <ClassView data={data} />;
+  return <ClassView dataClass={dataClass} />;
 };
 
 export default ClassPage;

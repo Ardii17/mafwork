@@ -13,8 +13,26 @@ const userServices = {
         Authorization: `Bearer ${token}`,
       },
     }),
+  getClassByID: (token: string, classID: string) =>
+    instance.get(`/api/user/class?q=${classID}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
   getAllAssign: (token: string) =>
     instance.get("/api/user/assignment", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+  getAllLessons: (token: string) =>
+    instance.get("/api/user/lesson", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+  getAllPosts: (token: string) =>
+    instance.get("/api/user/post", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -97,7 +97,7 @@ const ProfileView = (props: { query?: string | string[] | "" }) => {
                   position === "Ujian" ? "translate-x-0" : ""
                 } ${
                   position === "Favorite" ? "translate-x-full" : ""
-                } absolute transition-all w-1/3 h-1 bg-blue-700 bottom-0`}
+                } absolute transition-all rounded-t-md w-1/3 h-1 bg-blue-700 bottom-0`}
               ></div>
             </div>
           </div>
@@ -124,9 +124,7 @@ const ProfileView = (props: { query?: string | string[] | "" }) => {
           />
         )}
         {query === "favorite" && (
-          <LibraryProfile
-            title="Kamu Belum Memiliki Favorite"
-          />
+          <LibraryProfile title="Kamu Belum Memiliki Favorite" />
         )}
       </div>
     </div>

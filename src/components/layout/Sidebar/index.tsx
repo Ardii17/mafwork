@@ -1,6 +1,8 @@
+import { ThemeContext } from "@/components/context";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 
 const List = (props: {
   onClick?: any;
@@ -23,6 +25,7 @@ const List = (props: {
 
 const SidebarLayout = () => {
   const session: any = useSession();
+  const Theme = useContext(ThemeContext);
   const { pathname, push } = useRouter();
 
   return (
@@ -37,7 +40,9 @@ const SidebarLayout = () => {
           />
         </div>
         <div className="flex flex-col gap-2 justify-center items-center">
-          <p className="font-semibold text-center">{session.data?.user.username}</p>
+          <p className="font-semibold text-center">
+            {session.data?.user.username}
+          </p>
           <p className="text-sm opacity-70">Student</p>
         </div>
         <div className="mt-8">
@@ -97,10 +102,7 @@ const SidebarLayout = () => {
             >
               <i className="bx bx-cog" />
             </List>
-            <List
-              content="Logout"
-              onClick={() => signOut({ callbackUrl: "/" })}
-            >
+            <List content="Logout" onClick={() => Theme?.signOut()}>
               <i className="bx bx-log-out" />
             </List>
           </ul>
