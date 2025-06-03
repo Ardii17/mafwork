@@ -18,7 +18,7 @@ const AssignmentView = (props: proptypes) => {
               className="w-full min-h-28 h-28 max-h-28 shadow rounded bg-white p-2 flex gap-3 cursor-pointer hover:bg-zinc-100 transition-all"
             >
               <Image
-                src={"/@/../Image/Quiz/alam.png"}
+                src={"/Image/Quiz/alam.png"}
                 alt={"Quiz"}
                 width={100}
                 height={100}
@@ -32,7 +32,7 @@ const AssignmentView = (props: proptypes) => {
                 <div className="flex justify-between">
                   <div className="flex gap-2 items-center">
                     <Image
-                      src={"/@/../Image/quiz.png"}
+                      src={"/Image/quiz.png"}
                       alt={"Quiz"}
                       width={30}
                       height={30}

@@ -16,7 +16,7 @@ const DetailAssignmentView = () => {
       <div className="w-full flex gap-4 h-auto">
         <div className="flex-[2] shadow p-4 rounded-lg h-full bg-white flex gap-4">
           <Image
-            src={"/@/../Image/tugas-2.png"}
+            src={"/Image/tugas-2.png"}
             alt={"Tugas"}
             width={50}
             height={50}
@@ -52,7 +52,7 @@ const DetailAssignmentView = () => {
               <div className="h-auto flex flex-col gap-4 mt-3">
                 <div className="flex gap-4">
                   <Image
-                    src={"/@/../Image/Ardi.png"}
+                    src={"/Image/Ardi.png"}
                     alt={"Quiz"}
                     width={40}
                     height={40}
@@ -79,7 +79,7 @@ const DetailAssignmentView = () => {
                 </div>
                 <div className="flex gap-4">
                   <Image
-                    src={"/@/../Image/Ardi.png"}
+                    src={"/Image/Ardi.png"}
                     alt={"Quiz"}
                     width={40}
                     height={40}

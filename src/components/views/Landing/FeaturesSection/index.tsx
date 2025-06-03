@@ -11,22 +11,22 @@ const FeaturesSection = (props: { featureRef: any }) => {
         </h3>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <BoxFeature
-            img="/@/../Image/Landing/Kelas.png"
+            img="/Image/Landing/Kelas.png"
             title="Kelas"
             desc="Manage your classes and schedules efficiently."
           />
           <BoxFeature
-            img="/@/../Image/Landing/Tugas.png"
+            img="/Image/Landing/Tugas.png"
             title="Pengumpulan Tugas"
             desc="Easily submit and track your assignments."
           />
           <BoxFeature
-            img="/@/../Image/Landing/Quiz.png"
+            img="/Image/Landing/Quiz.png"
             title="Bermain Quiz"
             desc="Engage with interactive quizzes."
           />
           <BoxFeature
-            img="/@/../Image/Landing/Ujian.png"
+            img="/Image/Landing/Ujian.png"
             title="Melakukan Ujian"
             desc="Conduct and participate in exams seamlessly."
           />

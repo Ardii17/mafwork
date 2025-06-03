@@ -17,7 +17,7 @@ const ProfileView = (props: { query?: string | string[] | "" }) => {
             <div className="flex items-center space-x-6">
               <Image
                 className="w-24 h-24 rounded-full"
-                src="/@/../Image/Ardi.png"
+                src="/Image/Ardi.png"
                 alt="Foto Profil"
                 width={96}
                 height={96}

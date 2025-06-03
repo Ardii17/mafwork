@@ -61,7 +61,7 @@ const ClassView = (props: proptypes) => {
               className="w-full min-h-28 h-28 max-h-28 shadow rounded bg-white p-2 flex gap-3 cursor-pointer hover:bg-zinc-100 transition-all"
             >
               <Image
-                src={"/@/../Image/Quiz/alam.png"}
+                src={"/Image/Quiz/alam.png"}
                 alt={"Quiz"}
                 width={100}
                 height={100}
@@ -75,7 +75,7 @@ const ClassView = (props: proptypes) => {
                 <div className="flex justify-between">
                   <div className="flex gap-2 items-center">
                     <Image
-                      src={"/@/../Image/Ardi.png"}
+                      src={"/Image/Ardi.png"}
                       alt={"Quiz"}
                       width={30}
                       height={30}
@@ -102,7 +102,7 @@ const ClassView = (props: proptypes) => {
             <div
               className="w-full bg-cover h-28 rounded-t flex justify-end p-4 flex-col"
               style={{
-                backgroundImage: `url(/@/../Image/BackgroundClass/${selectedClass?.bg}.png)`,
+                backgroundImage: `url(/Image/BackgroundClass/${selectedClass?.bg}.png)`,
               }}
             >
               <p className="text-white text-xl font-semibold">
@@ -126,7 +126,7 @@ const ClassView = (props: proptypes) => {
                         <div className="flex justify-between items-center">
                           <div className="flex gap-4 items-center">
                             <Image
-                              src={"/@/../Image/Ardi.png"}
+                              src={"/Image/Ardi.png"}
                               alt="photo"
                               width={64}
                               height={64}
@@ -179,7 +179,7 @@ const ClassView = (props: proptypes) => {
                         onClick={() => push(`/${item.type}/detail/${item.id}`)}
                       >
                         <Image
-                          src={`/@/../Image/${item.type}.png`}
+                          src={`/Image/${item.type}.png`}
                           alt={`photo ${item.title}`}
                           width={64}
                           height={80}

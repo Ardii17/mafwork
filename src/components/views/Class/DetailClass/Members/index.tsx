@@ -15,7 +15,7 @@ const DetailClassMembers = (props: proptypes) => {
           <hr className="h-[2px] bg-blue-700 rounded-full" />
           <div className="flex gap-4 items-center">
             <Image
-              src={"/@/../Image/Ardi.png"}
+              src={"/Image/Ardi.png"}
               alt="photo"
               width={50}
               height={50}
@@ -29,7 +29,7 @@ const DetailClassMembers = (props: proptypes) => {
           <hr className="h-[2px] bg-blue-700 rounded-full" />
           <div className="flex gap-4 items-center">
             <Image
-              src={"/@/../Image/Ardi.png"}
+              src={"/Image/Ardi.png"}
               alt="photo"
               width={50}
               height={50}
@@ -39,7 +39,7 @@ const DetailClassMembers = (props: proptypes) => {
           </div>
           <div className="flex gap-4 items-center">
             <Image
-              src={"/@/../Image/Ardi.png"}
+              src={"/Image/Ardi.png"}
               alt="photo"
               width={50}
               height={50}
@@ -49,7 +49,7 @@ const DetailClassMembers = (props: proptypes) => {
           </div>
           <div className="flex gap-4 items-center">
             <Image
-              src={"/@/../Image/Ardi.png"}
+              src={"/Image/Ardi.png"}
               alt="photo"
               width={50}
               height={50}
@@ -59,7 +59,7 @@ const DetailClassMembers = (props: proptypes) => {
           </div>
           <div className="flex gap-4 items-center">
             <Image
-              src={"/@/../Image/Ardi.png"}
+              src={"/Image/Ardi.png"}
               alt="photo"
               width={50}
               height={50}

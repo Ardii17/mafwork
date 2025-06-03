@@ -31,7 +31,7 @@ const DetailClassView = (props: proptypes) => {
       <div
         className="w-full bg-cover h-52 flex flex-col justify-end text-white rounded-lg p-4 shadow"
         style={{
-          backgroundImage: `url(/@/../Image/BackgroundClass/${data?.bg}.png)`,
+          backgroundImage: `url(/Image/BackgroundClass/${data?.bg}.png)`,
         }}
       >
         <p className="text-3xl font-bold">{data.name}</p>

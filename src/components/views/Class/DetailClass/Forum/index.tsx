@@ -33,7 +33,7 @@ const DetailClassForum = (props: proptypes) => {
       <div className="flex flex-col gap-4 flex-[4]">
         <div className="rounded-md shadow border p-4 flex gap-4 items-center cursor-pointer hover:text-gray-950 text-gray-500">
           <Image
-            src={"/@/../Image/Ardi.png"}
+            src={"/Image/Ardi.png"}
             alt="photo"
             width={50}
             height={50}
@@ -55,7 +55,7 @@ const DetailClassForum = (props: proptypes) => {
                     <div className="flex justify-between items-center">
                       <div className="flex gap-4 items-center">
                         <Image
-                          src={"/@/../Image/Ardi.png"}
+                          src={"/Image/Ardi.png"}
                           alt="photo"
                           width={64}
                           height={64}
@@ -108,7 +108,7 @@ const DetailClassForum = (props: proptypes) => {
                     onClick={() => push(`/${item.type}/detail/${item.id}`)}
                   >
                     <Image
-                      src={`/@/../Image/${item.type}.png`}
+                      src={`/Image/${item.type}.png`}
                       alt={`photo ${item.title}`}
                       width={64}
                       height={80}

@@ -59,7 +59,7 @@ const DetailClassAssignment = (props: proptypes) => {
               >
                 <div className="flex gap-4 items-center">
                   <Image
-                    src={"/@/../Image/Ardi.png"}
+                    src={"/Image/Ardi.png"}
                     alt="photo"
                     width={40}
                     height={40}

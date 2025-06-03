@@ -17,7 +17,7 @@ const EducationLayout = (props: proptypes) => {
       <div className="w-full h-auto flex justify-between items-center p-4 shadow rounded bg-white relative">
         <div className="flex gap-4 items-center">
           <Image
-            src={`/@/../Image/${title.toLowerCase()}.png`}
+            src={`/Image/${title.toLowerCase()}.png`}
             width={60}
             height={60}
             alt={"Kelas"}
