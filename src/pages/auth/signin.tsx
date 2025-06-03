@@ -1,4 +1,4 @@
-import "@/components/views/auth/Signin"
+import ViewSignup from "@/components/views/Auth/Signin";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
